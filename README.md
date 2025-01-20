@@ -9,6 +9,7 @@ Allows you to control the player's team and class
 ### Requirements
 
 * [SourceMod](https://www.sourcemod.net) 1.11 or later
+* [dod-hooks](https://github.com/dronelektron/dod-hooks)
 
 ### Installation
 
