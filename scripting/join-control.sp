@@ -2,6 +2,7 @@
 
 #include "dod-hooks/api"
 
+#include "join-control/console-variable"
 #include "join-control/use-case"
 
 #include "modules/console-variable.sp"
