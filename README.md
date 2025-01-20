@@ -17,5 +17,6 @@ Allows you to control the player's team and class
 
 ### Console Variables
 
-* sm_joincontrol_immunity_team - Team immunity flags [default: "b"]
-* sm_joincontrol_immunity_class - Class immunity flags [default: "b"]
+* sm_joincontrol_flags_team_full - Team full flags [default: "b"]
+* sm_joincontrol_flags_team_stacked - Team stacked flags [default: "b"]
+* sm_joincontrol_flags_class - Class flags [default: "b"]

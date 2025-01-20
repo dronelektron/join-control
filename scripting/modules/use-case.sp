@@ -4,13 +4,27 @@ void UseCase_SetCurrentClient(int client) {
     g_currentClient = client;
 }
 
-Action UseCase_OnCanPlayerJoinTeam(int team, bool& block) {
+Action UseCase_OnTeamFull(int team, bool& full) {
     if (team < TEAM_ALLIES) {
         return Plugin_Continue;
     }
 
-    if (IsClientHasTeamImmunity(g_currentClient)) {
-        block = false;
+    if (IsClientHasTeamFullFlags(g_currentClient)) {
+        full = false;
+
+        return Plugin_Stop;
+    }
+
+    return Plugin_Continue;
+}
+
+Action UseCase_OnTeamStacked(int team, bool& stacked) {
+    if (team < TEAM_ALLIES) {
+        return Plugin_Continue;
+    }
+
+    if (IsClientHasTeamStackedFlags(g_currentClient)) {
+        stacked = false;
 
         return Plugin_Stop;
     }
@@ -19,7 +33,7 @@ Action UseCase_OnCanPlayerJoinTeam(int team, bool& block) {
 }
 
 Action UseCase_OnCanPlayerJoinClass(int client, bool& canJoin) {
-    if (IsClientHasClassImmunity(client)) {
+    if (IsClientHasClassFlags(client)) {
         canJoin = true;
 
         return Plugin_Stop;
@@ -28,16 +42,22 @@ Action UseCase_OnCanPlayerJoinClass(int client, bool& canJoin) {
     return Plugin_Continue;
 }
 
-static bool IsClientHasTeamImmunity(int client) {
-    int teamFlags = Variable_TeamFlags();
+static bool IsClientHasTeamFullFlags(int client) {
+    int flags = Variable_TeamFullFlags();
 
-    return IsAnyFlagSet(client, teamFlags);
+    return IsAnyFlagSet(client, flags);
 }
 
-static bool IsClientHasClassImmunity(int client) {
-    int classFlags = Variable_ClassFlags();
+static bool IsClientHasTeamStackedFlags(int client) {
+    int flags = Variable_TeamStackedFlags();
 
-    return IsAnyFlagSet(client, classFlags);
+    return IsAnyFlagSet(client, flags);
+}
+
+static bool IsClientHasClassFlags(int client) {
+    int flags = Variable_ClassFlags();
+
+    return IsAnyFlagSet(client, flags);
 }
 
 static bool IsAnyFlagSet(int client, int flags) {

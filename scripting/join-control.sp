@@ -27,11 +27,11 @@ public Action Player_OnJoinTeam(int client, int& team) {
 }
 
 public Action GameRules_OnTeamFull(int team, bool& full) {
-    return UseCase_OnCanPlayerJoinTeam(team, full);
+    return UseCase_OnTeamFull(team, full);
 }
 
 public Action GameRules_OnTeamStacked(int newTeam, int currentTeam, bool& stacked) {
-    return UseCase_OnCanPlayerJoinTeam(newTeam, stacked);
+    return UseCase_OnTeamStacked(newTeam, stacked);
 }
 
 public Action GameRules_OnCanPlayerJoinClass(int client, int class, bool& canJoin) {
