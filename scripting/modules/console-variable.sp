@@ -9,25 +9,21 @@ void Variable_Create() {
 }
 
 int Variable_TeamFullFlags() {
-    char flags[AdminFlags_TOTAL + 1];
-
-    g_teamFullFlags.GetString(flags, sizeof(flags));
-
-    return ReadFlagString(flags);
+    return FlagsToInt(g_teamFullFlags);
 }
 
 int Variable_TeamStackedFlags() {
-    char flags[AdminFlags_TOTAL + 1];
-
-    g_teamStackedFlags.GetString(flags, sizeof(flags));
-
-    return ReadFlagString(flags);
+    return FlagsToInt(g_teamStackedFlags);
 }
 
 int Variable_ClassFlags() {
+    return FlagsToInt(g_classFlags);
+}
+
+static int FlagsToInt(ConVar variable) {
     char flags[AdminFlags_TOTAL + 1];
 
-    g_classFlags.GetString(flags, sizeof(flags));
+    variable.GetString(flags, sizeof(flags));
 
     return ReadFlagString(flags);
 }
