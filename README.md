@@ -14,3 +14,8 @@ Allows you to control the player's team and class
 
 * Download latest [release](https://github.com/dronelektron/join-control/releases)
 * Extract `plugins` folder to `addons/sourcemod` folder of your server
+
+### Console Variables
+
+* sm_joincontrol_immunity_team - Team immunity flags [default: "b"]
+* sm_joincontrol_immunity_class - Class immunity flags [default: "b"]
