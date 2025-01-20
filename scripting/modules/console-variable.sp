@@ -7,11 +7,11 @@ static ConVar g_classFlags;
 
 void Variable_Create() {
     g_teamFullMode = CreateConVar("sm_joincontrol_mode_team_full", "0", "Team full mode");
-    g_teamFullFlags = CreateConVar("sm_joincontrol_flags_team_full", "b", "Team full flags");
+    g_teamFullFlags = CreateConVar("sm_joincontrol_flags_team_full", "", "Team full flags");
     g_teamStackedMode = CreateConVar("sm_joincontrol_mode_team_stacked", "0", "Team stacked mode");
-    g_teamStackedFlags = CreateConVar("sm_joincontrol_flags_team_stacked", "b", "Team stacked flags");
+    g_teamStackedFlags = CreateConVar("sm_joincontrol_flags_team_stacked", "", "Team stacked flags");
     g_classMode = CreateConVar("sm_joincontrol_mode_class", "0", "Class mode");
-    g_classFlags = CreateConVar("sm_joincontrol_flags_class", "b", "Class flags");
+    g_classFlags = CreateConVar("sm_joincontrol_flags_class", "", "Class flags");
 }
 
 int Variable_TeamFullMode() {
