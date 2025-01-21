@@ -11,13 +11,10 @@ Action UseCase_OnTeamFull(int team, bool& full) {
         return Plugin_Continue;
     }
 
-    if (mode == MODE_FLAGS && IsClientHasTeamFullFlags(g_currentClient)) {
-        full = false;
+    bool flagAccess = mode == MODE_FLAGS && IsClientHasTeamFullFlags(g_currentClient);
+    bool allAccess = mode == MODE_ALL;
 
-        return Plugin_Stop;
-    }
-
-    if (mode == MODE_ALL) {
+    if (flagAccess || allAccess) {
         full = false;
 
         return Plugin_Stop;
@@ -33,13 +30,10 @@ Action UseCase_OnTeamStacked(int team, bool& stacked) {
         return Plugin_Continue;
     }
 
-    if (mode == MODE_FLAGS && IsClientHasTeamStackedFlags(g_currentClient)) {
-        stacked = false;
+    bool flagAccess = mode == MODE_FLAGS && IsClientHasTeamStackedFlags(g_currentClient);
+    bool allAccess = mode == MODE_ALL;
 
-        return Plugin_Stop;
-    }
-
-    if (mode == MODE_ALL) {
+    if (flagAccess || allAccess) {
         stacked = false;
 
         return Plugin_Stop;
@@ -55,13 +49,10 @@ Action UseCase_OnCanPlayerJoinClass(int client, bool& canJoin) {
         return Plugin_Continue;
     }
 
-    if (mode == MODE_FLAGS && IsClientHasClassFlags(client)) {
-        canJoin = true;
+    bool flagAccess = mode == MODE_FLAGS && IsClientHasClassFlags(client);
+    bool allAccess = mode == MODE_ALL;
 
-        return Plugin_Stop;
-    }
-
-    if (mode == MODE_ALL) {
+    if (flagAccess || allAccess) {
         canJoin = true;
 
         return Plugin_Stop;
