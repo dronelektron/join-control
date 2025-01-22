@@ -1,6 +1,10 @@
 # Join control
 
-Allows you to control the player's team and class
+Allows you to control joining a team and a class:
+
+* `Team full` - Bypass the spawn point limit
+* `Team stacked` - Bypass team balance
+* `Class` - Bypass the class limit
 
 ### Supported Games
 
@@ -30,9 +34,3 @@ Allows you to control the player's team and class
 * 0 - Default game logic
 * 1 - Flag-only access
 * 2 - Access to all
-
-### Notes
-
-* `Team full` - Spawn point limit reached
-* `Team stacked` - Team disbalance
-* `Class` - Class limit reached
