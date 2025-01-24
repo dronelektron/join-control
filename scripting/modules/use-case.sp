@@ -12,7 +12,7 @@ Action UseCase_OnTeamFull(int team, bool& full) {
     int mode = Variable_TeamFullMode();
     int flags = Variable_TeamFullFlags();
 
-    return CheckAccess(g_currentClient, mode, flags, full, false);
+    return CheckJoinAccess(g_currentClient, mode, flags, full, false);
 }
 
 Action UseCase_OnTeamStacked(int team, bool& stacked) {
@@ -23,17 +23,17 @@ Action UseCase_OnTeamStacked(int team, bool& stacked) {
     int mode = Variable_TeamStackedMode();
     int flags = Variable_TeamStackedFlags();
 
-    return CheckAccess(g_currentClient, mode, flags, stacked, false);
+    return CheckJoinAccess(g_currentClient, mode, flags, stacked, false);
 }
 
 Action UseCase_OnCanPlayerJoinClass(int client, bool& canJoin) {
     int mode = Variable_ClassMode();
     int flags = Variable_ClassFlags();
 
-    return CheckAccess(client, mode, flags, canJoin, true);
+    return CheckJoinAccess(client, mode, flags, canJoin, true);
 }
 
-static Action CheckAccess(int client, int mode, int flags, bool& result, bool value) {
+static Action CheckJoinAccess(int client, int mode, int flags, bool& result, bool value) {
     if (mode == MODE_DEFAULT) {
         return Plugin_Continue;
     }
