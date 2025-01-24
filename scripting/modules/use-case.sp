@@ -53,5 +53,13 @@ static Action HasAccess(int client, int mode, int flags, bool value, bool& resul
 static bool HasFlags(int client, int flags) {
     int userFlags = GetUserFlagBits(client);
 
+    if (IsBitSet(userFlags, ADMFLAG_ROOT)) {
+        userFlags = (1 << AdminFlags_TOTAL) - 1;
+    }
+
     return (userFlags & flags) > 0;
+}
+
+static bool IsBitSet(int flags, int bit) {
+    return (flags & bit) == bit;
 }
