@@ -12,7 +12,7 @@ Action UseCase_OnTeamFull(int team, bool& full) {
     int mode = Variable_TeamFullMode();
     int flags = Variable_TeamFullFlags();
 
-    return HasAccess(g_currentClient, mode, flags, false, full);
+    return CheckAccess(g_currentClient, mode, flags, full, false);
 }
 
 Action UseCase_OnTeamStacked(int team, bool& stacked) {
@@ -23,17 +23,17 @@ Action UseCase_OnTeamStacked(int team, bool& stacked) {
     int mode = Variable_TeamStackedMode();
     int flags = Variable_TeamStackedFlags();
 
-    return HasAccess(g_currentClient, mode, flags, false, stacked);
+    return CheckAccess(g_currentClient, mode, flags, stacked, false);
 }
 
 Action UseCase_OnCanPlayerJoinClass(int client, bool& canJoin) {
     int mode = Variable_ClassMode();
     int flags = Variable_ClassFlags();
 
-    return HasAccess(client, mode, flags, true, canJoin);
+    return CheckAccess(client, mode, flags, canJoin, true);
 }
 
-static Action HasAccess(int client, int mode, int flags, bool value, bool& result) {
+static Action CheckAccess(int client, int mode, int flags, bool& result, bool value) {
     if (mode == MODE_DEFAULT) {
         return Plugin_Continue;
     }
@@ -53,5 +53,13 @@ static Action HasAccess(int client, int mode, int flags, bool value, bool& resul
 static bool HasFlags(int client, int flags) {
     int userFlags = GetUserFlagBits(client);
 
+    if (IsBitSet(userFlags, ADMFLAG_ROOT)) {
+        userFlags = (1 << AdminFlags_TOTAL) - 1;
+    }
+
     return (userFlags & flags) > 0;
+}
+
+static bool IsBitSet(int flags, int bit) {
+    return (flags & bit) == bit;
 }
