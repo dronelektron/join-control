@@ -12,7 +12,7 @@ public Plugin myinfo = {
     name = "Join control",
     author = "Dron-elektron",
     description = "Allows you to control the player's team and class",
-    version = "1.0.1",
+    version = "1.0.2",
     url = "https://github.com/dronelektron/join-control"
 };
 
